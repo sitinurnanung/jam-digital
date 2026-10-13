@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jam Digital </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div id="clock">
+    <h2>sekarang pukul</h2>
+    <div id="secondHand"></div>
+    <div id="time">
+      <div><span id="hour">00</span><span>Hours</span></div>
+      <div><span id="minutes">00</span><span>Minutes</span></div>
+      <div><span id="seconds">00</span><span>Seconds</span></div>
+      <div><span id="ampm">AM</span><span></span></div>
+    </div>
+    <div id="date">
+      <span id="dayname"></span>,
+      <span id="daynum"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+    </div>
+  </div>
+
+  <script>
+    async function updateClock() {
+      try {
+        const response = await fetch('/api/waktu');
+        const data = await response.json();
+
+        document.getElementById("hour").innerText = data.jam;
+        document.getElementById("minutes").innerText = data.menit;
+        document.getElementById("seconds").innerText = data.detik;
+        document.getElementById("ampm").innerText = data.ampm;
+
+        document.getElementById("dayname").innerText = data.hari;
+        document.getElementById("daynum").innerText = data.tanggal;
+        document.getElementById("month").innerText = data.bulan;
+        document.getElementById("year").innerText = data.tahun;
+      } catch (error) {
+        console.error("Gagal mengambil waktu:", error);
+      }
+    }
+
+    // Update setiap 1 detik
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

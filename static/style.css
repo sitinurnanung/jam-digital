@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FFC4C4, #FFB6C1, #FFD6D6);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+}
+
+/* container utama */
+#clock {
+  width: 55vw;
+  padding: 30px;
+  background-color: #f8d6e0;
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(232, 60, 145, 0.4);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: floatClock 4s ease-in-out infinite;
+}
+
+#clock:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 0 50px rgba(232, 60, 145, 0.6);
+}
+
+/* judul */
+#clock h2 {
+  color: #E83C91;
+  text-align: center;
+  margin: 10px 0 25px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.9em;
+  animation: textGlow 2.5s ease-in-out infinite alternate;
+}
+
+/* waktu */
+#clock #time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#clock #time div {
+  position: relative;
+  margin: 0 5px;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+}
+
+/* angka utama */
+#clock #time div span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 80px;
+  background: #E83C91;
+  color: #fff;
+  font-weight: 600;
+  font-size: 2.8em;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(232, 60, 145, 0.5);
+  animation: pulse 1.5s infinite alternate;
+  transition: transform 0.4s, background 0.3s;
+  cursor: pointer;
+}
+
+#clock #time div span:hover {
+  transform: translateY(-8px) scale(1.1);
+  background: #FF6FB5;
+  box-shadow: 0 0 35px rgba(255, 111, 181, 0.8);
+}
+
+/* label bawah (hrs, min, sec) */
+#clock #time div span:nth-child(2) {
+  height: 30px;
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  background: #E83C91;
+  text-transform: uppercase;
+  border-radius: 0 0 10px 10px;
+  box-shadow: none;
+}
+
+/* detik warna beda */
+#clock #time div:nth-child(3) span:first-child {
+  background: #b73d86;
+  color: #FFE6F2;
+  animation: bounce 1s infinite;
+}
+
+/* tanggal */
+#date {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 25px;
+  border: 2px solid #E83C91;
+  border-radius: 15px;
+  background: #fff;
+  color: #E83C91;
+  font-weight: 700;
+  font-size: 1.1em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 2s ease forwards;
+}
+
+/* 🌈 Animasi-animasi */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px rgba(232, 60, 145, 0.4); }
+  100% { box-shadow: 0 0 35px rgba(232, 60, 145, 0.8); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px #FF8FB7, 0 0 10px #E83C91; }
+  to { text-shadow: 0 0 25px #FF8FB7, 0 0 35px #E83C91; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatClock {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+#secondHand {
+  width: 100px;
+  height: 100px;
+  border: 3px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1.2s ease;
+  backdrop-filter: blur(2px);
+}
+
+#secondHand::before {
+  content: '';
+  width: 2px;
+  height: 50px;
+  background: #F32424;
+  position: absolute;
+  top: 10px;
+  border-radius: 2px;
+  transform-origin: bottom center;
+  animation: rotateSec 60s linear infinite;
+}
+
+@keyframes rotateSec {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Efek glow berputar */
+#secondHand::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 80, 150, 0.7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spinGlow 8s linear infinite;
+}
+
+@keyframes spinGlow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* bubble floating background */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: bubbleMove 12s infinite linear;
+  filter: blur(5px);
+}
+
+body::after {
+  width: 100px;
+  height: 100px;
+  animation-duration: 10s;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+@keyframes bubbleMove {
+  0% { transform: translateY(200px) translateX(0); opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(-400px) translateX(80px); opacity: 0.2; }
+}
+
+/* heartbeat efek judul */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
