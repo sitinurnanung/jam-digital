@@ -1,17 +1,17 @@
-﻿# Jam Digital Python
+﻿Jam Digital Python
 
 Jam digital aesthetic berwarna pink, dibangun dengan:
-- Python Flask (backend)
-- HTML + CSS (frontend)
+Python Flask (backend)
+HTML + CSS (frontend)
 
-## Cara Menjalankan
+Cara Menjalankan
 
 pip install flask
 python app.py
 
 Buka browser ke http://127.0.0.1:5000
 
-## Struktur Folder
+Struktur Folder
 
 - app.py
 - templates/jam.html

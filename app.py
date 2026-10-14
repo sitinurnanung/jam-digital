@@ -11,11 +11,9 @@ def index():
 def waktu():
     now = datetime.now()
     
-    # Format 12 jam
     h = now.hour % 12 or 12
     ampm = "PM" if now.hour >= 12 else "AM"
     
-    # Nama hari & bulan dalam Bahasa Indonesia
     hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
     bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
              "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
